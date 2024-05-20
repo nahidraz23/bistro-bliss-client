@@ -4,7 +4,7 @@ import './ChefSpecial.css';
 
 const ChefSpecial = () => {
     return (
-        <div className='section-bg py-10 my-10 text-white'>
+        <div className='section-bg py-10 my-10 text-white bg-fixed'>
             <div className=''>
                 <SectionHeading
                     subHeading={"Check it Out"}
@@ -13,7 +13,7 @@ const ChefSpecial = () => {
             </div>
             <div className='flex items-center px-32 gap-5'>
                 <div>
-                    <img src={featuredImg} alt="" className=''/>
+                    <img src={featuredImg} alt="" className='' />
                 </div>
                 <div className='space-y-5'>
                     <p>May 20, 2024</p>
