@@ -29,6 +29,9 @@ const PopularItems = () => {
                     menu.map((item, index) => <ItemCard key={index} item={item}></ItemCard>)
                 }
             </div>
+            <div className="flex justify-center my-5">
+                <button className="btn btn-ghost border-b-4 border-b-black">View Full Menu</button>
+            </div>
         </div>
     );
 };

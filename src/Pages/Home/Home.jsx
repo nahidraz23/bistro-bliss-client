@@ -1,6 +1,8 @@
 import Banner from "./Banner";
 import BistroBliss from "./BistroBliss";
 import Category from "./Category";
+import ChefSpecial from "./ChefSpecial/ChefSpecial";
+import Contact from "./Contact";
 import PopularItems from "./PopularItems";
 
 const Home = () => {
@@ -11,7 +13,9 @@ const Home = () => {
                 <Category></Category>
                 <BistroBliss></BistroBliss>
                 <PopularItems></PopularItems>
+                <Contact></Contact>
             </div>
+            <ChefSpecial></ChefSpecial>
         </div>
     );
 };
