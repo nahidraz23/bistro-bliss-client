@@ -20,7 +20,7 @@ const Navbar = () => {
     }, [theme])
 
     const navLinks = (
-        <div className="flex gap-5">
+        <div className="flex gap-5 flex-col md:flex-row">
             <NavLink><li>Home</li></NavLink>
             <NavLink><li>Contact Us</li></NavLink>
             <NavLink><li>Dashboard</li></NavLink>
@@ -44,11 +44,8 @@ const Navbar = () => {
                 </div>
                 <a className="text-xl">Bistro Bliss</a>
             </div>
-            <div className="navbar-center hidden lg:flex">
-
-            </div>
             <div className="navbar-end flex gap-4">
-                <ul className="menu menu-horizontal px-1">
+                <ul className="menu menu-horizontal px-1 hidden md:inline">
                     {
                         navLinks
                     }
