@@ -2,7 +2,7 @@ const ItemCard = ({ item }) => {
 
     const { price, name, recipe, image } = item
     return (
-        <div className="flex flex-col md:flex-row justify-center gap-2">
+        <div className="flex flex-col md:flex-row  gap-2">
                 <div>
                     <img src={image} alt="" style={{ width: "120px", borderRadius: '0 200px 200px 200px' }} />
                 </div>
