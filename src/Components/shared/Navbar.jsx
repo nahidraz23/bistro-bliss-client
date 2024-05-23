@@ -6,25 +6,25 @@ const Navbar = () => {
     const [theme, setTheme] = useState(localStorage.getItem('theme') || 'corporate');
 
     const toggleTheme = e => {
-        if(e.target.checked){
+        if (e.target.checked) {
             setTheme("night");
         }
-        else{
+        else {
             setTheme("cupcake");
         }
     }
 
-    useEffect( () => {
+    useEffect(() => {
         localStorage.setItem('theme', theme);
         document.querySelector('html').setAttribute('data-theme', theme)
     }, [theme])
 
     const navLinks = (
         <div className="flex gap-5 flex-col md:flex-row">
-            <NavLink><li>Home</li></NavLink>
+            <NavLink to={'/'}><li>Home</li></NavLink>
             <NavLink><li>Contact Us</li></NavLink>
             <NavLink><li>Dashboard</li></NavLink>
-            <NavLink><li>Our Menu</li></NavLink>
+            <NavLink to={'/menu'}><li>Our Menu</li></NavLink>
             <NavLink><li>Our Shop</li></NavLink>
         </div>
     )
@@ -42,7 +42,10 @@ const Navbar = () => {
                         }
                     </ul>
                 </div>
-                <a className="text-xl">Bistro Bliss</a>
+                <div>
+                    <h1 className="text-4xl uppercase">Bistro Bliss</h1>
+                    <h2 className="text-center uppercase">Restaurant</h2>
+                </div>
             </div>
             <div className="navbar-end flex gap-4">
                 <ul className="menu menu-horizontal px-1 hidden md:inline">
