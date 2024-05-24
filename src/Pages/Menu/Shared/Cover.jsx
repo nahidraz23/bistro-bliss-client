@@ -13,4 +13,4 @@ const Cover = ({ img, heading, subHeading }) => {
     );
 };
 
-export default Cover;
+export default Cover; 
