@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const Navbar = () => {
 
@@ -25,7 +25,7 @@ const Navbar = () => {
             <NavLink><li>Contact Us</li></NavLink>
             <NavLink><li>Dashboard</li></NavLink>
             <NavLink to={'/menu'}><li>Our Menu</li></NavLink>
-            <NavLink to={'/orderfood'}><li>Order Food</li></NavLink>
+            <NavLink to={'/orderfood/salad'}><li>Order Food</li></NavLink>
         </div>
     )
 
@@ -53,8 +53,9 @@ const Navbar = () => {
                         navLinks
                     }
                 </ul>
-                <a className="btn">Sign In</a>
-
+                <Link to={'/login'}>
+                    <button className="btn">Sign In</button>
+                </Link>
                 <div>
                     <label className="cursor-pointer grid place-items-center">
                         <input onChange={toggleTheme} type="checkbox" value="synthwave" className="toggle theme-controller bg-base-content row-start-1 col-start-1 col-span-2" />
@@ -63,7 +64,6 @@ const Navbar = () => {
                     </label>
                 </div>
             </div>
-
         </div>
     );
 };

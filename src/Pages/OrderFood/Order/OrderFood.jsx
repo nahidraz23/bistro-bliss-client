@@ -7,6 +7,7 @@ import { useState } from "react";
 import useMenu from "../../../hooks/useMenu";
 import FoodCard from "../../../Components/shared/FoodCard";
 import { useParams } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 
 const OrderFood = () => {
@@ -24,6 +25,9 @@ const OrderFood = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>Bistro Bliss | Order Food</title>
+            </Helmet>
             <div>
                 <Cover img={orderCoverBG} heading={"Order Food"} subHeading={"would you like to try a dish?"}></Cover>
             </div>
