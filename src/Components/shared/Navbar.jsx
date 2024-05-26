@@ -1,24 +1,31 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../../Providers/AuthProvider";
 
 const Navbar = () => {
+    const { user, signOutUser } = useContext(AuthContext);
 
-    const [theme, setTheme] = useState(localStorage.getItem('theme') || 'corporate');
-
+    // Theme controll
+    const [theme, setTheme] = useState(localStorage.getItem('theme') || 'cupcake');
     const toggleTheme = e => {
         if (e.target.checked) {
-            setTheme("night");
+            setTheme("forest");
         }
         else {
             setTheme("cupcake");
         }
     }
-
     useEffect(() => {
         localStorage.setItem('theme', theme);
         document.querySelector('html').setAttribute('data-theme', theme)
     }, [theme])
 
+    // Handle sign out 
+    const handleSignOut = () => {
+        signOutUser()
+    }
+
+    // Navbar items
     const navLinks = (
         <div className="flex gap-5 flex-col md:flex-row">
             <NavLink to={'/'}><li>Home</li></NavLink>
@@ -53,9 +60,18 @@ const Navbar = () => {
                         navLinks
                     }
                 </ul>
-                <Link to={'/login'}>
-                    <button className="btn">Sign In</button>
-                </Link>
+                {
+                    user ?
+                        <>
+                            <button onClick={handleSignOut} className="btn">Sign Out</button>
+                        </>
+                        :
+                        <>
+                            <Link to={'/login'}>
+                                <button className="btn">Sign In</button>
+                            </Link>
+                        </>
+                }
                 <div>
                     <label className="cursor-pointer grid place-items-center">
                         <input onChange={toggleTheme} type="checkbox" value="synthwave" className="toggle theme-controller bg-base-content row-start-1 col-start-1 col-span-2" />

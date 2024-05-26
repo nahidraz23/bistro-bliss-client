@@ -5,8 +5,8 @@ import Footer from '../Components/shared/Footer';
 const MainLayout = () => {
 
     const location = useLocation();
-    const noNav = location.pathname.includes('/login');
-    const noFooter = location.pathname.includes('/login');
+    const noNav = location.pathname.includes('/login') || location.pathname.includes('/register');
+    const noFooter = location.pathname.includes('/login') || location.pathname.includes('/register');
 
     return (
         <div>
