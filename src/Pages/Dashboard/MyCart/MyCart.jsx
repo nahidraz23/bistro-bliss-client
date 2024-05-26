@@ -55,7 +55,7 @@ const MyCart = () => {
                                                 </div>
                                             </td>
                                             <td>
-                                                <div>{item.price}</div>
+                                                <div className="font-bold badge">${item.price}</div>
                                             </td>
                                             <td>
                                                 <button className="btn">
