@@ -1,10 +1,12 @@
 import { useContext, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
+import useCart from "../../hooks/useCart";
 
 const Navbar = () => {
     const { user, signOutUser } = useContext(AuthContext);
-
+    const [cart] = useCart();
+ 
     // Theme controll
     const [theme, setTheme] = useState(localStorage.getItem('theme') || 'cupcake');
     const toggleTheme = e => {
@@ -27,12 +29,24 @@ const Navbar = () => {
 
     // Navbar items
     const navLinks = (
-        <div className="flex gap-5 flex-col md:flex-row">
+        <div className="flex gap-5 flex-col md:flex-row items-center ">
             <NavLink to={'/'}><li>Home</li></NavLink>
             <NavLink><li>Contact Us</li></NavLink>
             <NavLink><li>Dashboard</li></NavLink>
             <NavLink to={'/menu'}><li>Our Menu</li></NavLink>
             <NavLink to={'/orderfood/salad'}><li>Order Food</li></NavLink>
+            <NavLink className={'indicator'}>
+                <li className="">
+                    <div>
+                        <div>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-8 text-white ">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
+                            </svg>
+                        </div>
+                        <h1 className="indicator-item badge badge-secondary">{cart.length}</h1>
+                    </div>
+                </li>
+            </NavLink>
         </div>
     )
 
@@ -62,9 +76,15 @@ const Navbar = () => {
                 </ul>
                 {
                     user ?
-                        <>
-                            <button onClick={handleSignOut} className="btn">Sign Out</button>
-                        </>
+                        <div className="flex items-center border-2 px-2 rounded-full">
+                            <h1>{user?.displayName}</h1>
+                            <div className="dropdown dropdown-hover dropdown-end">
+                                <div tabIndex={0} role="button" className="ml-2"><img src={user?.photoURL} alt="" className="w-12 rounded-full" /></div>
+                                <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 bg-base-100 text-black rounded-box shadow mx-auto w-32 text-center">
+                                    <li><button onClick={handleSignOut}>Sign Out</button></li>
+                                </ul>
+                            </div>
+                        </div>
                         :
                         <>
                             <Link to={'/login'}>
