@@ -4,7 +4,7 @@ import { NavLink, Outlet } from "react-router-dom";
 const Dashbaord = () => {
     return (
         <div className="grid grid-cols-12">
-            <div className="grid col-span-3 bg-black text-white min-h-screen p-5">
+            <div className="grid col-span-3 bg-orange-600 min-h-screen p-5">
                 <ul>
                     <NavLink to={'/dashboard/userHome'}>
                         <li className="flex gap-2 p-4 items-center text-2xl hover:bg-white">
@@ -71,7 +71,7 @@ const Dashbaord = () => {
                     </NavLink>
                 </ul>
             </div>
-            <div className="grid col-span-9 bg-gray-700">
+            <div className="grid col-span-9 bg-orange-100">
                 <div className="text-center">
                     <Outlet></Outlet>
                 </div>
