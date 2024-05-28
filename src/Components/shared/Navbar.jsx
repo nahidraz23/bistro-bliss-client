@@ -32,12 +32,12 @@ const Navbar = () => {
         <div className="flex gap-5 flex-col md:flex-row items-center ">
             <NavLink to={'/'}><li>Home</li></NavLink>
             <NavLink><li>Contact Us</li></NavLink>
-            <NavLink><li>Dashboard</li></NavLink>
+            <NavLink to={'/dashboard'}><li>Dashboard</li></NavLink>
             <NavLink to={'/menu'}><li>Our Menu</li></NavLink>
             <NavLink to={'/orderfood/salad'}><li>Order Food</li></NavLink>
             {
                 user &&
-                <NavLink to={'/dashboard'} className={'indicator'}>
+                <NavLink to={'/dashboard/mycart'} className={'indicator'}>
                     <li className="">
                         <div>
                             <div>
