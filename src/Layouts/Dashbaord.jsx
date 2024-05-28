@@ -1,10 +1,11 @@
 import { FaBook, FaCalendar, FaCalendarDay, FaCartPlus, FaComment, FaEnvelope, FaHome, FaList, FaShoppingBag, FaUsers, FaUtensils, FaWallet } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router-dom";
+import useAdmin from "../hooks/useAdmin";
 
 const Dashbaord = () => {
 
     // TODO: get admin info from the database
-    const isAdmin = true;
+    const [isAdmin] = useAdmin();
 
     return (
         <div className="grid grid-cols-12">
