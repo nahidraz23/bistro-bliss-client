@@ -109,7 +109,7 @@ const Login = () => {
                                     <div className='flex justify-center'>
                                         <LoadCanvasTemplate />
                                     </div>
-                                    <input ref={captchaRef} type="text" name="captcha" placeholder="Type the captcha" className="input input-bordered" required />
+                                    <input ref={captchaRef} type="text" name="captcha" placeholder="Type the captcha" className="input input-bordered" />
                                     <button onClick={handleValidateCaptcha} className='btn btn-outline btn-xs mt-2'>Validate Captcha</button>
                                 </div>
                                 <div className="form-control mt-6">
