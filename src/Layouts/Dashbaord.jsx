@@ -20,7 +20,7 @@ const Dashbaord = () => {
                                         Admin Home
                                     </li>
                                 </NavLink>
-                                <NavLink to={'/dashboard/addItems'}>
+                                <NavLink to={'/dashboard/addItems'} className={({isActive}) => isActive ? 'text-white' : 'text-black'}>
                                     <li className="flex gap-2 p-4 items-center text-2xl hover:bg-white">
                                         <FaUtensils></FaUtensils>
                                         Add Items

@@ -9,7 +9,7 @@ const AllUsers = () => {
     const axiosSecure = useAxiosSecure();
 
     // TanStack query
-    const { data: users = [], refetch } = useQuery({
+    const { data: users = [], refetch } = useQuery({ 
         queryKey: ['users'],
         queryFn: async () => {
             const res = await axiosSecure.get('/allUsers') 

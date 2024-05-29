@@ -46,7 +46,6 @@ const Login = () => {
         else {
             setDisabled(true);
         }
-
     }
 
     // handle google login
