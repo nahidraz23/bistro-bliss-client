@@ -4,14 +4,18 @@ import useAxiosSecure from "./useAxiosSecure";
 
 const useAdmin = () => {
 
-    const {user} = useAuth();
+    const { user, loading } = useAuth();
     const axiosSecure = useAxiosSecure();
 
-    const {data: isAdmin, isPending: isAdminLoading}  = useQuery({
+
+    const { data: isAdmin, isPending: isAdminLoading } = useQuery({
         queryKey: [user?.email, 'isAdmin'],
         queryFn: async () => {
+            if (loading) {
+                return <progress className="progress w-56"></progress>
+            }
             const res = await axiosSecure.get(`/allUsers/${user?.email}`);
-            // console.log(res.data)
+            console.log(res.data)
             return res.data?.admin;
         }
     })

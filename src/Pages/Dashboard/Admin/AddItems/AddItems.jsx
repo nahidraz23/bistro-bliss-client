@@ -1,7 +1,12 @@
 import SectionHeading from "../../../../Components/shared/SectionHeading";
-import { useForm } from "react-hook-form"
+import { useForm } from "react-hook-form";
+import useAxiosPublic from "../../../../hooks/useAxiosPublic";
+
+const image_hosting_key = import.meta.env.VITE_image_hosting_key;
+const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
 
 const AddItems = () => {
+    const axiosPublic = useAxiosPublic();
 
     const {
         register,
@@ -9,7 +14,20 @@ const AddItems = () => {
         formState: { errors },
     } = useForm()
 
-    const onSubmit = (data) => console.log(data)
+    const onSubmit = async (data) => {
+        console.log(data)
+
+        // image upload to imgbb and then get an url
+        const imageFile = {image: data.image[0]};
+
+        const res =await axiosPublic.post(image_hosting_api, imageFile, {
+            headers: {
+                'content-type' : 'multipart/form-data'
+            }
+        })
+
+        console.log(res.data)
+    }
 
     return (
         <div>
@@ -26,14 +44,14 @@ const AddItems = () => {
                             <label className="label">
                                 <span className="label-text">Recipe Name*</span>
                             </label>
-                            <input type="text" placeholder="Recipe Name" className="input input-bordered" required />
+                            <input {...register("name")} type="text" placeholder="Recipe Name" className="input input-bordered" required />
                         </div>
                         <div className="form-control grid md:grid-cols-2 gap-2">
                             <div className="form-control">
                                 <label className="label">
-                                    <span className="label-text">Recipe Name*</span>
+                                    <span className="label-text">Category*</span>
                                 </label>
-                                <select className="select select-bordered w-full">
+                                <select {...register("category")} className="select select-bordered w-full">
                                     <option disabled selected>Category</option>
                                     <option value={"salad"}>Salad</option>
                                     <option value={"pizza"}>Pizza</option>
@@ -46,17 +64,19 @@ const AddItems = () => {
                                 <label className="label">
                                     <span className="label-text">Price*</span>
                                 </label>
-                                <input type="number" placeholder="Price" className="input input-bordered" required />
+                                <input {...register('price', { valueAsNumber: true })} type="number" placeholder="Price" className="input input-bordered" required />
                             </div>
                         </div>
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Recipe Details*</span>
                             </label>
-                            <textarea className="textarea textarea-bordered resize-none" rows={10} placeholder="Recipe Details"></textarea>
+                            <textarea {...register("recipe")} className="textarea textarea-bordered resize-none" rows={10} placeholder="Recipe Details"></textarea>
                         </div>
-
-                        <input type="submit" value={"Add Item"} className="btn btn-outline mt-5" />
+                        <div>
+                            <input {...register("image")} type="file" className="file-input file-input-bordered w-full mt-5" />
+                        </div>
+                        <input type="submit" value={"Add Item"} className="btn btn-outline mt-5 bg bg-yellow-600 text-white border-none" />
                     </form>
                 </div>
             </div >
