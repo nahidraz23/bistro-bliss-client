@@ -15,7 +15,7 @@ const useAdmin = () => {
                 return <progress className="progress w-56"></progress>
             }
             const res = await axiosSecure.get(`/allUsers/${user?.email}`);
-            console.log(res.data)
+            // console.log(res.data)
             return res.data?.admin;
         }
     })
