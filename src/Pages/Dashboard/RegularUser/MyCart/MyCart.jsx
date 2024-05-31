@@ -1,8 +1,8 @@
 import { FaTrash } from "react-icons/fa";
-import SectionHeading from "../../../Components/shared/SectionHeading";
-import useCart from "../../../hooks/useCart";
 import Swal from "sweetalert2";
-import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import SectionHeading from "../../../../Components/shared/SectionHeading";
+import useCart from "../../../../hooks/useCart";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 
 const MyCart = () => {
     const [cart, refetch] = useCart();

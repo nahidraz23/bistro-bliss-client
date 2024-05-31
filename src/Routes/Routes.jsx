@@ -7,10 +7,11 @@ import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
 import PrivateRoute from "./PrivateRoute";
 import Dashbaord from "../Layouts/Dashbaord";
-import MyCart from "../Pages/Dashboard/MyCart/MyCart";
 import AllUsers from "../Pages/Dashboard/Admin/AllUsers/AllUsers";
 import AddItems from "../Pages/Dashboard/Admin/AddItems/AddItems";
 import AdminRoute from "./AdminRoute";
+import ManageItems from "../Pages/Dashboard/Admin/ManageItems/ManageItems";
+import MyCart from "../Pages/Dashboard/RegularUser/MyCart/MyCart";
 
 export const router = createBrowserRouter([
     {
@@ -59,6 +60,10 @@ export const router = createBrowserRouter([
             {
                 path: '/dashboard/addItems',
                 element: <AdminRoute><AddItems></AddItems></AdminRoute>
+            },
+            {
+                path: "/dashboard/manageItems",
+                element: <ManageItems></ManageItems>
             }
         ]
     }

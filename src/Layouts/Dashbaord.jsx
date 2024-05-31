@@ -13,6 +13,7 @@ const Dashbaord = () => {
                 <ul>
                     {
                         isAdmin ?
+                        // For admin
                             <>
                                 <NavLink to={'/dashboard/adminHome'}>
                                     <li className="flex gap-2 p-4 items-center text-2xl hover:bg-white">
@@ -26,7 +27,7 @@ const Dashbaord = () => {
                                         Add Items
                                     </li>
                                 </NavLink>
-                                <NavLink to={'/dashboard/manageItems'}>
+                                <NavLink to={'/dashboard/manageItems'} className={({isActive}) => isActive ? 'text-white' : 'text-black'}>
                                     <li className="flex gap-2 p-4 items-center text-2xl hover:bg-white">
                                         <FaList></FaList>
                                         Manage Items
@@ -46,6 +47,7 @@ const Dashbaord = () => {
                                 </NavLink>
                             </>
                             :
+                            // For normal user
                             <>
                                 <NavLink to={'/dashboard/userHome'}>
                                     <li className="flex gap-2 p-4 items-center text-2xl hover:bg-white">
