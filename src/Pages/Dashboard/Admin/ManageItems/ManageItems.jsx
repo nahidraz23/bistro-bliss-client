@@ -1,16 +1,39 @@
 import { FaEdit, FaTrash } from "react-icons/fa";
 import SectionHeading from "../../../../Components/shared/SectionHeading";
 import useMenu from "../../../../hooks/useMenu";
+import Swal from "sweetalert2";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 
 const ManageItems = () => {
 
-    const [menu] = useMenu();
+    const [menu, refetch] = useMenu();
+    const axiosSecure = useAxiosSecure();
 
-    const handleDelete = id => {
-
+    const handleDelete = item => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                const res = await axiosSecure.delete(`/menu/${item._id}`)
+                if (res.data.deletedCount > 0) {
+                    refetch();
+                    Swal.fire({
+                        title: "Deleted!",
+                        text: `${item.name} has been deleted successfully.`,
+                        icon: "success"
+                    });
+                }
+            }
+        });
     }
 
-    const handleUpdate = id => {
+    const handleUpdate = () => {
 
     }
 
@@ -34,7 +57,7 @@ const ManageItems = () => {
                                 <th>Item Image</th>
                                 <th>Item Name</th>
                                 <th>Item Price</th>
-                                <th></th>
+                                <th className="text-right">Update</th>
                                 <th className="rounded-tr-2xl">Delete</th>
                             </tr>
                         </thead>
@@ -60,13 +83,13 @@ const ManageItems = () => {
                                         <td>
                                             <div className="font-bold badge badge-outline">${item.price}</div>
                                         </td>
-                                        <td>
-                                            <button onClick={() => handleUpdate(item._id)} className="btn btn-outline">
+                                        <td className="text-right">
+                                            <button onClick={() => handleUpdate(item)} className="btn btn-outline">
                                                 <FaEdit className="text-red-500"></FaEdit>
                                             </button>
                                         </td>
                                         <td>
-                                            <button onClick={() => handleDelete(item._id)} className="btn btn-outline">
+                                            <button onClick={() => handleDelete(item)} className="btn btn-outline">
                                                 <FaTrash className="text-red-500"></FaTrash>
                                             </button>
                                         </td>
