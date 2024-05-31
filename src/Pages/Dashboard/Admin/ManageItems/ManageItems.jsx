@@ -3,11 +3,13 @@ import SectionHeading from "../../../../Components/shared/SectionHeading";
 import useMenu from "../../../../hooks/useMenu";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
+import { useNavigate } from "react-router";
 
 const ManageItems = () => {
 
     const [menu, refetch] = useMenu();
     const axiosSecure = useAxiosSecure();
+    const navigate = useNavigate();
 
     const handleDelete = item => {
         Swal.fire({
@@ -33,8 +35,8 @@ const ManageItems = () => {
         });
     }
 
-    const handleUpdate = () => {
-
+    const handleUpdate = (item) => {
+        navigate(`/dashboard/updateItem/${item._id}`)
     }
 
     return (
