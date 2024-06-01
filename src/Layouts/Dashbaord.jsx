@@ -7,7 +7,7 @@ const Dashbaord = () => {
 
     // TODO: get admin info from the database
     const [isAdmin] = useAdmin();
-    const [cart, refetch] = useCart();
+    const [cart] = useCart();
 
     return (
         <div className="grid grid-cols-12">

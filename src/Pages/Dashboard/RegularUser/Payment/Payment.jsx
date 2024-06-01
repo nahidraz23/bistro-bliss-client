@@ -18,7 +18,7 @@ const Payment = () => {
                 ></SectionHeading>
             </div>
             <div>
-                <h1 className="text-3xl font-bold badge badge-outline p-5">You have to pay: ${price}</h1>
+                <h1 className="text-3xl font-bold badge badge-outline p-5">{price > 0 ? `You have to pay: ${price}` : 'Thank you for payment'}</h1>
             </div>
             <div className="">
                 <Elements stripe={stripePromise}>
