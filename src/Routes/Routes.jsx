@@ -13,6 +13,7 @@ import AdminRoute from "./AdminRoute";
 import ManageItems from "../Pages/Dashboard/Admin/ManageItems/ManageItems";
 import MyCart from "../Pages/Dashboard/RegularUser/MyCart/MyCart";
 import UpdateItem from "../Pages/Dashboard/Admin/UpdateItem/UpdateItem";
+import Payment from "../Pages/Dashboard/RegularUser/Payment/Payment";
 
 export const router = createBrowserRouter([
     {
@@ -51,6 +52,10 @@ export const router = createBrowserRouter([
             {
                 path: '/dashboard/mycart',
                 element: <MyCart></MyCart>
+            },
+            {
+                path: '/dashboard/reservation',
+                element: <Payment></Payment>
             },
 
             // Admin routes

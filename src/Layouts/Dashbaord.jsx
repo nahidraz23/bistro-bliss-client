@@ -55,19 +55,19 @@ const Dashbaord = () => {
                                         User Home
                                     </li>
                                 </NavLink>
-                                <NavLink to={'/dashboard/reservation'}>
+                                <NavLink to={'/dashboard/reservation'} className={({isActive}) => isActive ? 'text-white' : 'text-black'}>
                                     <li className="flex gap-2 p-4 items-center text-2xl hover:bg-white">
                                         <FaCalendar></FaCalendar>
                                         Reservation
                                     </li>
                                 </NavLink>
-                                <NavLink to={'/dashboard/payment'}>
+                                <NavLink to={'/dashboard/paymentHistory'}>
                                     <li className="flex gap-2 p-4 items-center text-2xl hover:bg-white">
                                         <FaWallet></FaWallet>
                                         Payment History
                                     </li>
                                 </NavLink>
-                                <NavLink to={'/dashboard/mycart'} className={(isActive) => isActive ? 'text-white' : 'text-black'}>
+                                <NavLink to={'/dashboard/mycart'} className={({isActive}) => isActive ? 'text-white' : 'text-black'}>
                                     <li className="flex gap-2 p-4 items-center text-2xl hover:bg-white">
                                         <FaCartPlus></FaCartPlus>
                                         My Cart
