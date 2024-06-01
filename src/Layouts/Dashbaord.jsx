@@ -1,19 +1,22 @@
 import { FaBook, FaCalendar, FaCalendarDay, FaCartPlus, FaComment, FaEnvelope, FaHome, FaList, FaShoppingBag, FaUsers, FaUtensils, FaWallet } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router-dom";
 import useAdmin from "../hooks/useAdmin";
+import useCart from "../hooks/useCart";
 
 const Dashbaord = () => {
 
     // TODO: get admin info from the database
     const [isAdmin] = useAdmin();
+    const [cart, refetch] = useCart();
 
     return (
         <div className="grid grid-cols-12">
+            
             <div className="grid col-span-3 bg-yellow-600 min-h-screen p-5">
                 <ul>
                     {
                         isAdmin ?
-                        // For admin
+                            // For admin
                             <>
                                 <NavLink to={'/dashboard/adminHome'}>
                                     <li className="flex gap-2 p-4 items-center text-2xl hover:bg-white">
@@ -21,25 +24,25 @@ const Dashbaord = () => {
                                         Admin Home
                                     </li>
                                 </NavLink>
-                                <NavLink to={'/dashboard/addItems'} className={({isActive}) => isActive ? 'text-white' : 'text-black'}>
+                                <NavLink to={'/dashboard/addItems'} className={({ isActive }) => isActive ? 'text-white' : 'text-black'}>
                                     <li className="flex gap-2 p-4 items-center text-2xl hover:bg-white">
                                         <FaUtensils></FaUtensils>
                                         Add Items
                                     </li>
                                 </NavLink>
-                                <NavLink to={'/dashboard/manageItems'} className={({isActive}) => isActive ? 'text-white' : 'text-black'}>
+                                <NavLink to={'/dashboard/manageItems'} className={({ isActive }) => isActive ? 'text-white' : 'text-black'}>
                                     <li className="flex gap-2 p-4 items-center text-2xl hover:bg-white">
                                         <FaList></FaList>
                                         Manage Items
                                     </li>
                                 </NavLink>
-                                <NavLink to={'/dashboard/manageBookings'} className={({isActive}) => isActive ? 'text-white' : 'text-black'}>
+                                <NavLink to={'/dashboard/manageBookings'} className={({ isActive }) => isActive ? 'text-white' : 'text-black'}>
                                     <li className="flex gap-2 p-4 items-center text-2xl hover:bg-white">
                                         <FaBook></FaBook>
                                         Manage Bookings
                                     </li>
                                 </NavLink>
-                                <NavLink to={'/dashboard/allUsers'} className={({isActive}) => isActive ? 'text-white' : 'text-black'}>
+                                <NavLink to={'/dashboard/allUsers'} className={({ isActive }) => isActive ? 'text-white' : 'text-black'}>
                                     <li className="flex gap-2 p-4 items-center text-2xl hover:bg-white">
                                         <FaUsers></FaUsers>
                                         All Users
@@ -55,7 +58,7 @@ const Dashbaord = () => {
                                         User Home
                                     </li>
                                 </NavLink>
-                                <NavLink to={'/dashboard/reservation'} className={({isActive}) => isActive ? 'text-white' : 'text-black'}>
+                                <NavLink to={'/dashboard/reservation'} className={({ isActive }) => isActive ? 'text-white' : 'text-black'}>
                                     <li className="flex gap-2 p-4 items-center text-2xl hover:bg-white">
                                         <FaCalendar></FaCalendar>
                                         Reservation
@@ -67,10 +70,10 @@ const Dashbaord = () => {
                                         Payment History
                                     </li>
                                 </NavLink>
-                                <NavLink to={'/dashboard/mycart'} className={({isActive}) => isActive ? 'text-white' : 'text-black'}>
+                                <NavLink to={'/dashboard/mycart'} className={({ isActive }) => isActive ? 'text-white' : 'text-black'}>
                                     <li className="flex gap-2 p-4 items-center text-2xl hover:bg-white">
                                         <FaCartPlus></FaCartPlus>
-                                        My Cart
+                                        My Cart ({cart.length})
                                     </li>
                                 </NavLink>
                                 <NavLink to={'/dashboard/review'}>

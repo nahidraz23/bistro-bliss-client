@@ -69,7 +69,7 @@ const MyCart = () => {
                             <thead className="bg-orange-600 ">
                                 <tr className="text-white">
                                     <th className="rounded-tl-2xl">
-
+                                        #
                                     </th>
                                     <th>Item Image</th>
                                     <th>Item Name</th>
@@ -79,10 +79,10 @@ const MyCart = () => {
                             </thead>
                             <tbody>
                                 {
-                                    cart.map(item =>
+                                    cart.map((item, index) =>
                                         <tr key={item._id}>
                                             <td>
-
+                                                {index + 1}
                                             </td>
                                             <td>
                                                 <div className="avatar">

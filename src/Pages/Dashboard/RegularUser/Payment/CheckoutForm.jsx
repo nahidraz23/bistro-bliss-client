@@ -2,6 +2,9 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useEffect, useState } from "react";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import useCart from "../../../../hooks/useCart";
+import useAuth from "../../../../hooks/useAuth";
+import moment from 'moment';
+import { data } from "autoprefixer";
 
 const CheckoutForm = () => {
 
@@ -9,9 +12,11 @@ const CheckoutForm = () => {
     const elements = useElements();
     const [error, setError] = useState('');
     const [clientSecret, setClientSecret] = useState('');
+    const [transactionId, setTransectionId] = useState('');
     const axiosSecure = useAxiosSecure();
+    const {user} = useAuth();
     const [cart] = useCart();
-    const price = cart.reduce( (total, item) => total + item.price,0)
+    const price = cart.reduce( (total, item) => total + item.price,0);
 
     useEffect( () => {
         axiosSecure.post("/create-payment-intent", {price})
@@ -19,7 +24,6 @@ const CheckoutForm = () => {
             setClientSecret(res.data.clientSecret)
         })
     }, [axiosSecure, price])
-    console.log(clientSecret)
 
     const handleSubmit = async e => {
         e.preventDefault();
@@ -40,9 +44,40 @@ const CheckoutForm = () => {
         })
 
         if(error){
-            setError(error.message)
+            setError(error.message);
         } else{
-            setError('')
+            setError('');
+        }
+
+        const {paymentIntent, error : confirmError} = await stripe.confirmCardPayment(clientSecret,{
+            payment_method:{
+                card: card,
+                billing_details: {
+                    email: user?.email || 'anonymous',
+                    name: user?.displayName || 'anonymous'
+                }
+            }
+        })
+        if(confirmError){
+            console.log('confirm error', confirmError.message)
+        }else{
+            if(paymentIntent.status === 'succeeded'){
+                setTransectionId(paymentIntent.id);
+
+                // Now save the payment in database
+                const payment = {
+                    email: user?.email,
+                    price: price,
+                    date: moment().subtract(10, 'days').calendar(),
+                    transactionId: paymentIntent.id,
+                    cartIds: cart.map(item => item._id),
+                    menuIds: cart.map(item => item.menuId),
+                    status: 'pending'
+                }
+
+                const res = await axiosSecure.post('/payments', payment);
+                console.log("Payment saved",res.data)
+            }
         }
 
     }
@@ -72,6 +107,9 @@ const CheckoutForm = () => {
                     Pay
                 </button>
                 <p className="text-red-500 text-2xl font-semibold">{error}</p>
+                {
+                    transactionId && <p className="text-green-500 text-2xl py-4">Your transactionId is: {transactionId}</p>
+                }
             </form>
 
         </div>
