@@ -18,7 +18,7 @@ const Dashbaord = () => {
                         isAdmin ?
                             // For admin
                             <>
-                                <NavLink to={'/dashboard/adminHome'}>
+                                <NavLink to={'/dashboard/adminHome'} className={({ isActive }) => isActive ? 'text-white' : 'text-black'}>
                                     <li className="flex gap-2 p-4 items-center text-2xl hover:bg-white">
                                         <FaHome></FaHome>
                                         Admin Home
@@ -64,7 +64,7 @@ const Dashbaord = () => {
                                         Reservation
                                     </li>
                                 </NavLink>
-                                <NavLink to={'/dashboard/paymentHistory'}>
+                                <NavLink to={'/dashboard/paymentHistory'} className={({ isActive }) => isActive ? 'text-white' : 'text-black'}>
                                     <li className="flex gap-2 p-4 items-center text-2xl hover:bg-white">
                                         <FaWallet></FaWallet>
                                         Payment History

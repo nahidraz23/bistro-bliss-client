@@ -2,10 +2,12 @@ import { useContext, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 import useCart from "../../hooks/useCart";
+import useAdmin from "../../hooks/useAdmin";
 
 const Navbar = () => {
     const { user, signOutUser } = useContext(AuthContext);
     const [cart] = useCart();
+    const [isAdmin] = useAdmin();
 
     // Theme controll
     const [theme, setTheme] = useState(localStorage.getItem('theme') || 'cupcake');
@@ -36,7 +38,7 @@ const Navbar = () => {
             <NavLink to={'/menu'}><li>Our Menu</li></NavLink>
             <NavLink to={'/orderfood/salad'}><li>Order Food</li></NavLink>
             {
-                user &&
+                !isAdmin &&
                 <NavLink to={'/dashboard/mycart'} className={'indicator'}>
                     <li className="">
                         <div>
